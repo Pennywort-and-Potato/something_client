@@ -1,27 +1,29 @@
-import Head from 'next/head'
-import styles from '@/styles/Home.module.scss'
-import { userLogin } from './api/api'
-import { setUser, getUser } from '@/store/userSlice'
-import { connect } from 'react-redux'
+import Head from 'next/head';
+import styles from '@/styles/Home.module.scss';
+import { userLogin } from './api/api';
+import { setUser, getUser } from '@/store/userSlice';
+import { connect } from 'react-redux';
+import { useLocalStorage } from 'usehooks-ts';
 
 function Home(props: any) {
-  const { user, dispatch } = props
-  
+  const { user, dispatch } = props;
+
+  const [token, setToken] = useLocalStorage<string>('jwt', '');
+
   const onLogin = async (event: any) => {
-    event.preventDefault()
-    const form = new FormData(event.currentTarget)
-  
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+
     const params: IUserLogin = {
-      username: form.get("username") as string,
-      password: form.get("password") as string
-    }
-  
-    const data = await userLogin(params)
+      username: form.get('username') as string,
+      password: form.get('password') as string,
+    };
+
+    const data = await userLogin(params);
     if (data.success) {
-      localStorage.setItem("jwt", data.jwt) // Push user token to local storage
-      dispatch(setUser(data.user)) // Dispatch redux
+      setToken(data.jwt); // Push user token to local storage
     }
-  }
+  };
 
   return (
     <>
@@ -31,20 +33,25 @@ function Home(props: any) {
         <link rel="icon" href="/DP.png" />
       </Head>
       <main>
-        {!user ? <form onSubmit={event => onLogin(event)}>
-          <input type={"text"} name="username" />
-          <input type={"password"} name="password" />
-          <button type="submit">Login</button>
-        </form> : null}
+        {!user ? (
+          <form
+            style={{ display: 'flex', flexDirection: 'column' }}
+            onSubmit={(event) => onLogin(event)}
+          >
+            <input type={'text'} name="username" />
+            <input type={'password'} name="password" />
+            <button type="submit">Login</button>
+          </form>
+        ) : null}
       </main>
     </>
-  )
+  );
 }
 
 function mapStateToProps(state: any) {
-  return ({
-    user: state.user.user
-  })
+  return {
+    user: state.user.user,
+  };
 }
 
-export default connect(mapStateToProps, null)(Home)
+export default connect(mapStateToProps, null)(Home);

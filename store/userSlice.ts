@@ -17,7 +17,7 @@ const extraReducers: any = {
       ...action.payload,
     };
   },
-}
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -26,7 +26,7 @@ export const userSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
-    extraReducers
+    extraReducers,
   },
 });
 
