@@ -1,0 +1,1 @@
+export const getHostName = "http://51.79.145.63:5000"
