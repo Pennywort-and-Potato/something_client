@@ -17,7 +17,6 @@ function Home(props: any) {
     }
   
     const data = await userLogin(params)
-  
     if (data.success) {
       localStorage.setItem("jwt", data.jwt) // Push user token to local storage
       dispatch(setUser(data.user)) // Dispatch redux

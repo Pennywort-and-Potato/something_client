@@ -5,6 +5,17 @@ const defaultHeaders = {
   "Content-Type": "application/json"
 }
 
+function getHeader(): any {
+  let header: any = {
+    "Content-Type": "application/json"
+  }
+  let token = localStorage.getItem("jwt")
+
+  if (token) header["Authorization"] = token
+
+  return token;
+}
+
 export function userLogin(params: IUserLogin) {
   return axios.post(`${getHostName}/login`, params, {
     headers: defaultHeaders
