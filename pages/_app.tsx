@@ -18,7 +18,7 @@ function App({ Component, ...rest }: AppProps) {
         setLoading(false);
         store.dispatch(setUser(res.data));
       });
-    }
+    } else setLoading(false)
   }, []);
 
   return (
