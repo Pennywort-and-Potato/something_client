@@ -3,26 +3,24 @@ import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';
 import { Provider } from 'react-redux';
-import { useLayoutEffect, useState } from 'react';
-import { setUser } from '@/store/userSlice';
-import { getUserByToken } from './api/api';
+import { useEffect, useState } from 'react';
+import { fetchUserByToken, setUser } from '@/store/userSlice';
 import { useLocalStorage } from 'usehooks-ts';
 
 function App({ Component, ...rest }: AppProps) {
-  const [loading, setLoading] = useState(true);
   const { store, props } = wrapper.useWrappedStore(rest);
 
+  const [loading, setLoading] = useState(true);
   const [token, setToken] = useLocalStorage<string | null>('jwt', null);
+  
+  const callback = () => setLoading(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (token) {
-      getUserByToken(token).then((res) => {
-        store.dispatch(setUser(res.data));
-        setLoading(false);
-      });
+      store.dispatch(fetchUserByToken({ token, callback }))
     } else {
       store.dispatch(setUser(null));
-      setLoading(false);
+      callback
     }
   }, [token]);
 

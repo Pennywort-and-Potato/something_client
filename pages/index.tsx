@@ -1,13 +1,12 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.scss';
 import { userLogin } from './api/api';
-import { setUser, getUser } from '@/store/userSlice';
 import { connect } from 'react-redux';
 import { useLocalStorage } from 'usehooks-ts';
+import { useRouter } from 'next/navigation';
 
 function Home(props: any) {
   const { user, dispatch } = props;
-
   const [token, setToken] = useLocalStorage<string>('jwt', '');
 
   const onLogin = async (event: any) => {

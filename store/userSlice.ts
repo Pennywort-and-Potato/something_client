@@ -1,23 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppState } from './store';
 import { HYDRATE } from 'next-redux-wrapper';
+import { getUserByToken } from '@/pages/api/api';
 
+
+export const fetchUserByToken = createAsyncThunk(
+  'user/fetchByToken',
+  async (params: any, thunkAPI) => {
+    const { token, callback } = params;
+    const response = await getUserByToken(token)
+    callback()
+    return response.data
+  }
+)
 interface initialState {
   user: IUser | null;
 }
 
-const initialState: initialState = {
+const initialState = {
   user: null,
-};
-
-const extraReducers: any = {
-  [HYDRATE]: (state: any, action: any) => {
-    return {
-      ...state,
-      ...action.payload,
-    };
-  },
-};
+} as initialState
 
 export const userSlice = createSlice({
   name: 'user',
@@ -26,7 +28,19 @@ export const userSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
-    extraReducers,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserByToken.fulfilled, (state, action) => {
+      state.user = action.payload
+    })
+    return ({
+      [HYDRATE]: (state: any, action: any) => {
+        return {
+          ...state,
+          ...action.payload,
+        };
+      },
+    })
   },
 });
 

@@ -23,3 +23,13 @@ interface IUser {
   updated_at: Date;
   username: string;
 }
+
+interface ICreatePost {
+  title: string;
+  body: string;
+  contents: {
+    alt: string;
+    src: string;
+    content_type: string;
+  }[]
+}
