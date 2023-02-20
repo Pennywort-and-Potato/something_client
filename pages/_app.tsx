@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { useLayoutEffect, useState } from 'react';
 import { setUser } from '@/store/userSlice';
 import { getUserByToken } from './api/api';
-import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
+import { useLocalStorage } from 'usehooks-ts';
 
 function App({ Component, ...rest }: AppProps) {
   const [loading, setLoading] = useState(true);
