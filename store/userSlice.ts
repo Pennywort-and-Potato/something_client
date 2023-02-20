@@ -46,6 +46,4 @@ export const userSlice = createSlice({
 
 export const { setUser } = userSlice.actions;
 
-export const getUser = (state: AppState) => state.user;
-
 export default userSlice.reducer;

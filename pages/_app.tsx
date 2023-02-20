@@ -20,7 +20,7 @@ function App({ Component, ...rest }: AppProps) {
       store.dispatch(fetchUserByToken({ token, callback }))
     } else {
       store.dispatch(setUser(null));
-      callback
+      callback()
     }
   }, [token]);
 
