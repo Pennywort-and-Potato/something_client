@@ -4,6 +4,7 @@ import { userLogin } from './api/api';
 import { connect } from 'react-redux';
 import { useLocalStorage } from 'usehooks-ts';
 import { useRouter } from 'next/navigation';
+import { convertFormValues } from './common/utils';
 
 function Home(props: any) {
   const { user, dispatch } = props;
@@ -11,14 +12,8 @@ function Home(props: any) {
 
   const onLogin = async (event: any) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-
-    const params: IUserLogin = {
-      username: form.get('username') as string,
-      password: form.get('password') as string,
-    };
-
-    const data = await userLogin(params);
+    const values = convertFormValues(event)
+    const data = await userLogin(values);
     if (data.success) {
       setToken(data.jwt); // Push user token to local storage
     }
