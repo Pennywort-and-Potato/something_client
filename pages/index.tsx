@@ -26,7 +26,7 @@ function Home(props: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/DP.png" />
       </Head>
-      <main>
+      <div>
         {!user ? (
           <form
             style={{ display: 'flex', flexDirection: 'column' }}
@@ -37,7 +37,7 @@ function Home(props: any) {
             <button type="submit">Login</button>
           </form>
         ) : null}
-      </main>
+      </div>
     </>
   );
 }

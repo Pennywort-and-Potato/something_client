@@ -7,10 +7,12 @@ interface props {
 
 export default function Layout({ children }: props) {
   return (
-    <>
+    <div className='main-layout'>
       <Navbar />
-        <main>{children}</main>
+        <main>
+        {children}
+        </main>
       <Footer />
-    </>
+    </div>
   )
 }

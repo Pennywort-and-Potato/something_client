@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
