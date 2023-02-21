@@ -35,7 +35,6 @@ export function getUserByToken(token: string) {
 }
 
 export function uploadImage(bin: File, token: string) {
-
   return axios
     .post(`${getHostName}/image/upload`, bin, {
       headers: {
@@ -45,4 +44,14 @@ export function uploadImage(bin: File, token: string) {
     })
     .then((res: any) => res.data)
     .catch((err: any) => err.response.data);
+}
+
+export function createPost(params: ICreatePost, token: string) {
+  return axios.post(`${getHostName}/v2/createPost`, params, {
+    headers: {
+      'Authorization': token
+    },
+  })
+  .then((res: any) => res.data)
+  .catch((err: any) => err.response.data);
 }
