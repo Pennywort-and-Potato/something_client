@@ -33,3 +33,16 @@ export function getUserByToken(token: string) {
     .then((res: any) => res.data)
     .catch((err: any) => err.response.data);
 }
+
+export function uploadImage(bin: File, token: string) {
+
+  return axios
+    .post(`${getHostName}/image/upload`, bin, {
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'image/*'
+      },
+    })
+    .then((res: any) => res.data)
+    .catch((err: any) => err.response.data);
+}
