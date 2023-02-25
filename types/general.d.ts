@@ -27,9 +27,9 @@ interface IUser {
 interface ICreatePost {
   title: string;
   body: string;
-  contents: {
+  contents: Array<{
     alt: string;
     src: string;
     content_type: string;
-  }[]
+  }>
 }
