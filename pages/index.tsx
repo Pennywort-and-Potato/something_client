@@ -11,7 +11,6 @@ function Home(props: any) {
         <link rel="icon" href="/DP.png" />
       </Head>
       <div>
-        Body
       </div>
     </>
   );

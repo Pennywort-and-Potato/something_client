@@ -1,10 +1,11 @@
 import React from 'react'
+import styles from '@/styles/Navbar.module.scss'
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = (props: any) => {
   return (
-    <div>Footer</div>
+    <div className={styles['nav-container']}>
+
+    </div>
   )
 }
 
