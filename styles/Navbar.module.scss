@@ -4,15 +4,9 @@
   padding: 4px;
   box-sizing: border-box;
   background-color: #333;
-}
-
-.login-form {
-  float: right;
   display: flex;
-  height: 100%;
-  gap: 8px;
-  padding: 5px;
-  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .icon-holder {
@@ -27,70 +21,5 @@
   img {
     box-sizing: border-box;
     padding: 5px;
-  }
-}
-
-.form-item {
-  position: relative;
-  display: flex;
-  .password-icon {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    position: absolute;
-    right: 4px;
-    cursor: pointer;
-  }
-}
-
-.user-action {
-  position: relative;
-  float: right;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  color: #55c9ee;
-  border-radius: 4px;
-  cursor: pointer;
-
-  .avatar {
-    background-color: #222;
-    height: 30px;
-    border-radius: 4px;
-    margin-right: 12px;
-    padding: 0px 12px;
-    display: flex;
-    align-items: center;
-  }
-
-  .dropdown {
-    display: none;
-    position: absolute;
-    border-radius: 4px;
-    max-width: 250px;
-    min-width: 100px;
-    background-color: white;
-    top: 0px;
-    right: 12px;
-    margin-top: 40px;
-    text-align: end;
-
-    > * {
-      line-height: 30px;
-    }
-    > li {
-      padding: 0px 12px;
-      color: #333;
-      white-space: nowrap;
-      &:hover {
-        background-color: #00000021;
-      }
-    }
-  }
-
-  &:hover {
-    .dropdown {
-      display: block;
-    }
   }
 }
